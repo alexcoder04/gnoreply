@@ -9,9 +9,12 @@ import (
 )
 
 type PostData struct {
-	Token       string                  `form:"token" binding:"required"`
+	Token string `form:"token" binding:"required"`
+
+	Recepient   string `form:"recipient" binding:"required"`
+	FromAddress string `form:"from_address" binding:"required"`
+
 	Title       string                  `form:"title" binding:"required"`
-	Recepient   string                  `form:"recipient" binding:"required"`
 	Body        string                  `form:"body" binding:"required"`
 	Attachments []*multipart.FileHeader `form:"attachments"`
 }
@@ -47,7 +50,7 @@ func main() {
 			if user.Token == data.Token {
 				err := SendMail(MailConfig{
 					Password:    config.Password,
-					FromAddress: user.Address,
+					FromAddress: data.FromAddress,
 					FromName:    user.Name,
 					ToAddress:   data.Recepient,
 					Title:       data.Title,

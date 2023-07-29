@@ -7,9 +7,8 @@ import (
 )
 
 type User struct {
-	Token   string `json:"token"`
-	Name    string `json:"name"`
-	Address string `json:"address"`
+	Token string `json:"token"`
+	Name  string `json:"name"`
 }
 
 type Config struct {
